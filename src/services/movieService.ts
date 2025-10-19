@@ -6,6 +6,9 @@ const API_URL = "https://api.themoviedb.org/3/search/movie";
 interface FetchMoviesParams {
   query: string;
 }
+interface MovieResponse {
+  results: Movie[];
+}
 
 export async function fetchMovies({
   query,
@@ -15,7 +18,7 @@ export async function fetchMovies({
   console.log("🔍 Запит на фільми з query:", query);
 
   try {
-    const response = await axios.get(API_URL, {
+    const response = await axios.get<MovieResponse>(API_URL, {
       params: {
         query,
         include_adult: false,
