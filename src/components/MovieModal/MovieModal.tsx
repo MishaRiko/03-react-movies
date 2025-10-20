@@ -8,8 +8,6 @@ interface MovieModalProps {
   onClose: () => void;
 }
 
-const modalRoot = document.getElementById("modal-root")!;
-
 const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -33,6 +31,8 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, onClose }) => {
       onClose();
     }
   };
+  const modalRoot = document.getElementById("modal-root");
+  if (!modalRoot) return null;
 
   return ReactDOM.createPortal(
     <div
